@@ -465,7 +465,8 @@ Serial::SerialImpl::flush ()
   if (is_open_ == false) {
     throw PortNotOpenedException ("Serial::flush");
   }
-  FlushFileBuffers (fd_);
+  PurgeComm(fd_, PURGE_RXCLEAR | PURGE_TXCLEAR); // yet to test
+  // FlushFileBuffers (fd_);
 }
 
 void
