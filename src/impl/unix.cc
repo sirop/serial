@@ -791,7 +791,8 @@ Serial::SerialImpl::flush ()
   if (is_open_ == false) {
     throw PortNotOpenedException ("Serial::flush");
   }
-  tcdrain (fd_);
+  tcflush(fd_, TCIOFLUSH); // yet to test
+  // tcdrain (fd_);
 }
 
 void
